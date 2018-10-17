@@ -9,10 +9,6 @@ Object.defineProperty(String.prototype, 'cleanSpecialChars',
 	enumerable: false,
 	value: function ()
 	{
-		return this
-			.replace(/[ÀÁÂÃÄÅ]/g, "A")
-			.replace(/[àáâãäå]/g, "a")
-			.replace(/[ÈÉÊË]/g, "E")
-			.replace(/[^a-z0-9]/gi, '');
+		return this.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9 ]/g,'_');
 	}
 });
