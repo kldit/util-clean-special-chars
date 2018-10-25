@@ -3,12 +3,14 @@
  *
  * util functions
  */
-
-Object.defineProperty(String.prototype, 'cleanSpecialChars',
+if(!String.prototype.cleanSpecialChars)
 {
-    enumerable: false,
-    value: function ()
+    Object.defineProperty(String.prototype, 'cleanSpecialChars',
     {
-        return this.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9 ]/g,'_');
-    }
-});
+        enumerable: false,
+        value: function ()
+        {
+            return this.normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9 ]/g, '_');
+        }
+    });
+}
